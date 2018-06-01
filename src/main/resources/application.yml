@@ -5,3 +5,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
