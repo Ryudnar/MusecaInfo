@@ -1,13 +1,10 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-    <title>Museca Info</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: header">
+
 </head>
 <body>
-
+<div th:replace="navbar :: navbar"></div>
 <div class="container">
     <div class="jumbotron">
         <h1>죽은 게임 시체 만지기!</h1>
@@ -16,7 +13,5 @@
     <p>좆망~</p>
     <p>~~~~~~~~</p>
 </div>
-<script src="js/lib/jquery.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
 </body>
 </html>

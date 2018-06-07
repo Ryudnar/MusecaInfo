@@ -1,12 +1,17 @@
 package com.ryudnar.MusecaInfo.domain.Controller;
 
-import com.ryudnar.MusecaInfo.domain.DTO.PlayerDataSaveRequestDto;
 import com.ryudnar.MusecaInfo.domain.DTO.PlayerScoreDataSaveRequestDto;
 import com.ryudnar.MusecaInfo.domain.Service.PlayerScoreDataService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+import java.util.List;
+
+@Controller
 @AllArgsConstructor
 @RequestMapping("/score")
 public class PlayerScoreDataController {
@@ -14,11 +19,11 @@ public class PlayerScoreDataController {
 
   @GetMapping("/")
   public String main() {
-    return "main";
+    return "score/main";
   }
 
   @PostMapping("/save")
-  public Long savePlayerScoreData(@RequestBody PlayerScoreDataSaveRequestDto playerScoreDataSaveRequestDto){
-    return playerScoreDataService.save(playerScoreDataSaveRequestDto);
+  public int savePlayerScoreData(@RequestBody List<PlayerScoreDataSaveRequestDto> playerScoreDataSaveRequestDto){
+    return playerScoreDataService.saveAll(playerScoreDataSaveRequestDto);
   }
 }
