@@ -3,8 +3,6 @@ package com.ryudnar.MusecaInfo.domain.DTO;
 import com.ryudnar.MusecaInfo.domain.Entity.PlayerDataEntity;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 public class PlayerDataSaveRequestDto {
   private String playerName;

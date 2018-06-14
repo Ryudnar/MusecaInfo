@@ -1,24 +1,21 @@
 package com.ryudnar.MusecaInfo.domain.Service;
 
-import com.ryudnar.MusecaInfo.domain.DTO.PlayerScoreDataSaveRequestDto;
+import com.ryudnar.MusecaInfo.domain.Entity.PlayerScoreDataEntity;
 import com.ryudnar.MusecaInfo.domain.Repository.PlayerScoreDataRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class PlayerScoreDataService {
+  @Autowired
   private PlayerScoreDataRepository playerScoreDataRepository;
 
   @Transactional
-  public int saveAll(List<PlayerScoreDataSaveRequestDto> playerScoreDataSaveRequestDto) {
-    return playerScoreDataRepository.saveAll(playerScoreDataSaveRequestDto.stream()
-                                                                    .map(dto -> dto.toEntity())
-                                                                    .collect(Collectors.toList())).size();
+  public int saveAll(List<PlayerScoreDataEntity> playerScoreDataEntities) {
+    return playerScoreDataRepository.saveAll(playerScoreDataEntities).size();
   }
 
 //  @Transactional

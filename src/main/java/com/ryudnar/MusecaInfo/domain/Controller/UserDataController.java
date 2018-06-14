@@ -3,6 +3,7 @@ package com.ryudnar.MusecaInfo.domain.Controller;
 import com.ryudnar.MusecaInfo.domain.DTO.UserDataSaveRequestDto;
 import com.ryudnar.MusecaInfo.domain.Service.UserDataService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserDataController {
+    @Autowired
     private UserDataService userDataService;
 
     @GetMapping("/hello")

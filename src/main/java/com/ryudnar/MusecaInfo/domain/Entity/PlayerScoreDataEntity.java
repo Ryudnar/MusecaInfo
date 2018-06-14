@@ -15,10 +15,13 @@ public class PlayerScoreDataEntity extends BaseTimeEntity {
   private Long id;
 
   @Column(name = "song_id", nullable = false)
-  private Long songId;
+  private Integer songId;
 
   @Column(name = "difficulty", nullable = false)
   private Integer difficulty;
+
+  @Column(name = "level", nullable = false)
+  private Integer level;
 
   @Column(name = "score", nullable = false)
   private Integer score;
@@ -30,11 +33,16 @@ public class PlayerScoreDataEntity extends BaseTimeEntity {
   private Integer caCount;
 
   @Builder
-  public PlayerScoreDataEntity(Long songId, Integer difficulty, Integer score, Integer playCount, Integer caCount) {
+  public PlayerScoreDataEntity(Integer songId, Integer difficulty, Integer level, Integer score, Integer playCount, Integer caCount) {
     this.songId = songId;
     this.difficulty = difficulty;
+    this.level = level;
     this.score = score;
     this.playCount = playCount;
     this.caCount = caCount;
+  }
+
+  public void setSongId(Integer songId) {
+    this.songId = songId;
   }
 }

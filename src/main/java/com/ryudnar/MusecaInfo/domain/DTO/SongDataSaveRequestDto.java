@@ -5,21 +5,13 @@ import lombok.Data;
 
 @Data
 public class SongDataSaveRequestDto {
-  private String name;
+  private String title;
   private String artist;
-  private String illustrator;
-  private Integer green;
-  private Integer yellow;
-  private Integer red;
 
   public SongDataEntity toEntity() {
     return SongDataEntity.builder()
-      .name(name)
+      .title(title)
       .artist(artist)
-      .illustrator(illustrator)
-      .green(green)
-      .yellow(yellow)
-      .red(red)
       .build();
   }
 }

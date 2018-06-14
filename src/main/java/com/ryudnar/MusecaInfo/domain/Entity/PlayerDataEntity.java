@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Table(name = "player_data")
 @Getter

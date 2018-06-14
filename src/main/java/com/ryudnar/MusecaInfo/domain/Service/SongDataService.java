@@ -1,28 +1,55 @@
 package com.ryudnar.MusecaInfo.domain.Service;
 
-import com.ryudnar.MusecaInfo.domain.DTO.SongDataSaveRequestDto;
 import com.ryudnar.MusecaInfo.domain.Entity.SongDataEntity;
 import com.ryudnar.MusecaInfo.domain.Repository.SongDataRepository;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class SongDataService {
+  @Autowired
   private SongDataRepository songDataRepository;
 
-  @Transactional
-  public Integer save(SongDataSaveRequestDto songDataSaveRequestDto) {
-    return songDataRepository.save(songDataSaveRequestDto.toEntity()).getId();
+  @Getter
+  private List<SongDataEntity> songDataEntityList;
+  @Getter
+  private Map<String, Integer> songTitleIdMap;
+
+  @PostConstruct
+  public void init() {
+    songDataEntityList = songDataRepository.findAll();
+    songTitleIdMap = songDataEntityList.stream()
+                                        .collect(Collectors.toMap(i -> i.getTitle(), i -> i.getId()));
   }
 
-  // 노래 정보 가져오기, 스코어 상세 페이지에서 보여줄 때 쓰면 되려나?
-  // 얘는 bean으로 해서 서버 켜져있는 동안 계속 들고 있는 편이 나을 것 같은데.
   @Transactional
-  public List<SongDataEntity> getAll() {
-    return songDataRepository.findAll();
+  public void reload() {
+    songDataEntityList = songDataRepository.findAll();
+    songTitleIdMap = songDataEntityList.stream()
+      .collect(Collectors.toMap(i -> i.getTitle(), i -> i.getId()));
+  }
+
+  @Transactional
+  public Integer saveAll(List<SongDataEntity> songDataEntity) {
+    return songDataRepository.saveAll(songDataEntity).size();
+  }
+
+  public Integer getSongIdByTitle(String title) {
+    return songTitleIdMap.get(title);
+  }
+
+  public Integer getSongCount() {
+    return songDataEntityList.size();
+  }
+
+  public boolean containsSongData(String title) {
+    return songTitleIdMap.containsKey(title);
   }
 }
