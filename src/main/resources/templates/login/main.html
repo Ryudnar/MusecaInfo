@@ -3,14 +3,14 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="header :: header">
-
+    <script src="/js/signin.js"></script>
 </head>
 <body>
 <div th:replace="navbar :: navbar"></div>
 <div class="container">
-  <div class="jumbotron">
-    <p>플레이어 정보 페이지?</p>
-  </div>
+    <div class="jumbotron">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
 </div>
 </body>
 </html>
